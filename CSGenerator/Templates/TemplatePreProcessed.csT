@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using GuidLibrary;
+//#parentLibrary#
+
+namespace #namespaceName# 
+{
+	#classGUID#
+	public class #className# #parentClass#PreProcessed
+	{
+#properties#
+    		public #type# #prop# { get; set; }
+		
+		public #className#()
+		{
+			GUID = "#guid#";
+		}
+	}
+}

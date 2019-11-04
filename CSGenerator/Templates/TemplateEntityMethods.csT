@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace #className#
+{
+    public class #mainClassName#EntityMethods : #mainClassName#Algebra
+    {
+#findFirstBy#
+        public #className# findFirstBy#PropName#(#type# #propName#)
+        {
+            #className# #valueName# = null;
+
+            using (var ctx = new AllContext())
+            {
+                var query = ctx.#contextPropName#
+                                .Where(ss => ss.#propName# == #propName#)
+                                .FirstOrDefault<#className#Algebra>();
+
+                #valueName# = query;
+            }
+            return #valueName#;
+        }
+
+#findListBy#
+        public List<#className#> findListBy#PropName#(#type# #propName#)
+        {
+            List<#className#> #valueName# = new List<#className#>();
+
+            using (var ctx = new AllContext())
+            {
+                var query = ctx.#contextPropName#
+                                .Where(ss => ss.#propName# == #propName#).ToList();
+
+                #valueName# = query;
+            }
+            return #valueName#;
+        }
+
+#exists#
+	public Boolean existsBy#PropName#(#type# #propName#)
+	{
+		#className# #valueName# = null;
+
+            using (var ctx = new AllContext())
+            {
+                var query = ctx.#contextPropName#
+                                .Where(ss => ss.#propName# == #propName#)
+                                .FirstOrDefault<#className#>();
+
+                #valueName# = query;
+            }
+                if(#valueName# != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+#update#
+		public void update(#className# updated#className#)
+        {
+            using(var ctx = new AllContext())
+            {
+                var _#className# = ctx.#contextPropName#
+				.Where(ss => ss.id == updated#className#.id).FirstOrDefault();
+									  
+                _#className#.#prop# = updated#className#.#prop#;
+                ctx.SaveChanges();
+            }
+        }
+
+#deleteById#
+        public void deleteById(#type# #propName#)
+        {
+            using (var ctx = new AllContext())
+            {
+                var query = ctx.#contextPropName#
+                                .Remove(ctx.#contextPropName#.Single(ss => ss.#propName# == #propName#));
+
+                ctx.SaveChanges();
+            }
+        }
+
+#adds#
+	public void addNew(#className# _#className#)
+	{
+		using (var ctx = new AllContext())
+            {
+                ctx.#contextPropName#.Add(_#className#);
+
+                ctx.SaveChanges();
+            }
+	}
+    }
+}

@@ -1,0 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity;
+
+namespace #namespaceName#
+{
+    public class #className#Context : DbContext
+    {
+        public #className#Context() : base("#baseName#")
+        {
+            
+        }
+
+#classes#
+        public DbSet<#classesName#> #tableName# { get; set; }
+    }
+}
