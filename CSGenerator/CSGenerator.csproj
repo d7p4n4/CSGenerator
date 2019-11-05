@@ -89,6 +89,7 @@
     <Compile Include="GenerateClass.cs" />
     <Compile Include="GenerateClassAlgebra.cs" />
     <Compile Include="GenerateClassEmpty.cs" />
+    <Compile Include="GeneratePersistentService.cs" />
     <Compile Include="GenerateResponseModel.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Program.cs" />

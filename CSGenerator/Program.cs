@@ -16,6 +16,7 @@ namespace CSGenerator
         private static readonly string APPSETTINGS_CLASSNAME = ConfigurationManager.AppSettings["className"];
         private static readonly string APPSETTINGS_OUTPUTPATH = ConfigurationManager.AppSettings["outputPath"];
         private static readonly string APPSETTINGS_INPATH = ConfigurationManager.AppSettings["inputPath"];
+        private static readonly string APPSETTINGS_NAMESPACE = ConfigurationManager.AppSettings["namespace"];
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -51,7 +52,7 @@ namespace CSGenerator
 
                     Ac4yClass ac4y = DeserialiseMethod.deser(_file);
 
-                    GenerateClass.generateClass(ac4y, APPSETTINGS_OUTPUTPATH, files);
+                    GenerateClass.generateClass(ac4y, APPSETTINGS_OUTPUTPATH, files, APPSETTINGS_NAMESPACE);
                 }
             } catch (Exception _exception)
             {

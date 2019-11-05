@@ -1,0 +1,106 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using #namespaceName#.EFMethods.Class;
+using #namespaceName#.Final.Class;
+
+namespace #namespaceName#.PersistentService.Class
+{
+    public class #className#PersistentService
+    {
+	
+		public string baseName { get; set; }
+		private #className#EntityMethods _#className#EntityMethods { get; set; }
+		
+		public #className#PersistentService() { }
+
+        public #className#PersistentService(string newBaseName)
+        {
+            baseName = newBaseName;
+            _#className#EntityMethods = new #className#EntityMethods(baseName);
+        }
+
+#getFirstBy#
+        public GetObjectResponse GetFirstBy#Prop#(#type# #prop#)
+        {
+            var response = new GetObjectResponse();
+            try
+            {
+                response.Object = (_#className#EntityMethods.findFirstBy#Prop#(#prop#));
+                response.Result = new Ac4yProcessResult() { Code = "1" };
+            }
+            catch (Exception exception)
+            {
+                response.Result = (new Ac4yProcessResult() { Code = "-1", Message = exception.Message });
+            }
+
+            return response;
+        }
+
+#getListBy#
+        public GetObjectResponse GetListBy#Prop#(#type# #prop#)
+        {
+            var response = new GetObjectResponse();
+            try
+            {
+                response.Object = (_#className#EntityMethods.findListBy#Prop#(#prop#));
+                response.Result = new Ac4yProcessResult() { Code = "1" };
+            }
+            catch (Exception exception)
+            {
+                response.Result = (new Ac4yProcessResult() { Code = "-1", Message = exception.Message });
+            }
+
+            return response
+		}
+		
+		public GetObjectResponse Save(#className# _#className#)
+        {
+            var response = new GetObjectResponse();
+            try
+            {
+                _#className#EntityMethods.addNew#className#(_#className#);
+                response.Result = new Ac4yProcessResult() { Code = "1" };
+            }
+            catch (Exception exception)
+            {
+                response.Result = (new Ac4yProcessResult() { Code = "-1", Message = exception.Message });
+            }
+
+            return response;
+        }
+		
+		public GetObjectResponse Delete(int id)
+        {
+            var response = new GetObjectResponse();
+            try
+            {
+                _#className#EntityMethods.deleteById(id);
+                response.Result = new Ac4yProcessResult() { Code = "1" };
+            }
+            catch (Exception exception)
+            {
+                response.Result = (new Ac4yProcessResult() { Code = "-1", Message = exception.Message });
+            }
+
+            return response;
+        }
+		
+		public GetObjectResponse Update(#className# _#className#)
+        {
+            var response = new GetObjectResponse();
+            try
+            {
+                _#className#EntityMethods.update(_#className#);
+                response.Result = new Ac4yProcessResult() { Code = "1" };
+            }
+            catch (Exception exception)
+            {
+                response.Result = (new Ac4yProcessResult() { Code = "-1", Message = exception.Message });
+            }
+
+            return response;
+        }
+    }
+}

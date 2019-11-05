@@ -2,22 +2,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using #namespaceName#.Algebra.Class;
+using #namespaceName#.Final.Class;
+using #namespaceName#.Context.Class;
 
 
-namespace #className#
+namespace #namespaceName#.EFMethods.Class
 {
     public class #mainClassName#EntityMethods : #mainClassName#Algebra
     {
+		public string baseName { get; set; }
+
+        public #mainClassName#EntityMethods() { }
+
+        public #mainClassName#EntityMethods(string newBaseName)
+        {
+            baseName = newBaseName;
+        }
+	
 #findFirstBy#
         public #className# findFirstBy#PropName#(#type# #propName#)
         {
             #className# #valueName# = null;
 
-            using (var ctx = new AllContext())
+            using (var ctx = new AllContext(baseName))
             {
                 var query = ctx.#contextPropName#
                                 .Where(ss => ss.#propName# == #propName#)
-                                .FirstOrDefault<#className#Algebra>();
+                                .FirstOrDefault<#className#>();
 
                 #valueName# = query;
             }
@@ -29,7 +41,7 @@ namespace #className#
         {
             List<#className#> #valueName# = new List<#className#>();
 
-            using (var ctx = new AllContext())
+            using (var ctx = new AllContext(baseName))
             {
                 var query = ctx.#contextPropName#
                                 .Where(ss => ss.#propName# == #propName#).ToList();
@@ -44,7 +56,7 @@ namespace #className#
 	{
 		#className# #valueName# = null;
 
-            using (var ctx = new AllContext())
+            using (var ctx = new AllContext(baseName))
             {
                 var query = ctx.#contextPropName#
                                 .Where(ss => ss.#propName# == #propName#)
@@ -65,7 +77,7 @@ namespace #className#
 #update#
 		public void update(#className# updated#className#)
         {
-            using(var ctx = new AllContext())
+            using(var ctx = new AllContext(baseName))
             {
                 var _#className# = ctx.#contextPropName#
 				.Where(ss => ss.id == updated#className#.id).FirstOrDefault();
@@ -78,7 +90,7 @@ namespace #className#
 #deleteById#
         public void deleteById(#type# #propName#)
         {
-            using (var ctx = new AllContext())
+            using (var ctx = new AllContext(baseName))
             {
                 var query = ctx.#contextPropName#
                                 .Remove(ctx.#contextPropName#.Single(ss => ss.#propName# == #propName#));
@@ -90,7 +102,7 @@ namespace #className#
 #adds#
 	public void addNew(#className# _#className#)
 	{
-		using (var ctx = new AllContext())
+		using (var ctx = new AllContext(baseName))
             {
                 ctx.#contextPropName#.Add(_#className#);
 

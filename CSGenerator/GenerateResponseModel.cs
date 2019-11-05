@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CSGenerator
 {
     class GenerateResponseModel
-    {
+    {/*
         public static void generateResponseModel(string className, string outputPath)
         {
             string[] text = readIn("TemplateObjectResponseModel");
@@ -20,7 +20,7 @@ namespace CSGenerator
                 replaced = replaced + text[i] + "\n";
             }
 
-            replaced = replaced.Replace("#namespaceName#", className);
+            replaced = replaced.Replace("#namespaceName#", package);
 
             writeOut(replaced, className + "ResponseModel", outputPath);
         }
@@ -39,6 +39,6 @@ namespace CSGenerator
         {
             File.WriteAllText(outputPath + fileName + ".cs", text);
 
-        }
+        }*/
     }
 }

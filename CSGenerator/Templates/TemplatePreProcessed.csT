@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using GuidLibrary;
 //#parentLibrary#
 
-namespace #namespaceName# 
+namespace #namespaceName#.PreProcessed.Class
 {
 	#classGUID#
-	public class #className# #parentClass#PreProcessed
+	public class #className# #parentClass#
 	{
 #properties#
     		public #type# #prop# { get; set; }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using #namespaceName#.Final.Class;
 
-namespace #namespaceName#
+namespace #namespaceName#.Context.Class
 {
-    public class #className#Context : DbContext
+    public class AllContext : DbContext
     {
-        public #className#Context() : base("#baseName#")
+        public AllContext(string baseName) : base(baseName)
         {
             
         }

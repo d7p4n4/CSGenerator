@@ -12,20 +12,15 @@ namespace CSGenerator
 {
     class GenerateClass
     {
-        public static void generateClass(Ac4yClass anyType, string outputPath, string[] files)
+        public static void generateClass(Ac4yClass anyType, string outputPath, string[] files, string namespaceName)
         {
             string className = anyType.Name;
-            string package = anyType.Namespace;
+            string package = namespaceName;
             Boolean guidExists = false;
 
             //get the properties and its type
             List<Ac4yProperty> map = anyType.PropertyList;
-
-            if (package == null)
-            {
-                package = ConfigurationManager.AppSettings["namespace"];
-            }
-
+            
             string[] text = new String[0];
 
             text = readIn("Template");
@@ -60,7 +55,7 @@ namespace CSGenerator
                 {
                     string newLine = "";
 
-                    if (anyType.Ancestor != null && !anyType.Ancestor.Equals(""))
+                    if (anyType.Ancestor != null && !anyType.Ancestor.Equals("") && !anyType.Ancestor.Equals("Object"))
                     {
                         newLine = text[i].Replace("#parentClass#", ": " + anyType.Ancestor) + "\n";
                     }
@@ -176,8 +171,9 @@ namespace CSGenerator
 
             GenerateClassAlgebra.generateClass("Template", package, className, map, outputPath, files);
             ApiMethodGenerator.generateApiMethods("Template", package, className, map, outputPath);
-            GenerateResponseModel.generateResponseModel(className, outputPath);
-            
+            GeneratePersistentService.generatePersistentService("Template", package, className, map, outputPath);
+            //GenerateResponseModel.generateResponseModel(className, outputPath);
+
         }
 
         public static string[] readIn(string fileName)

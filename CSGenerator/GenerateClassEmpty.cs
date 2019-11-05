@@ -24,7 +24,7 @@ namespace CSGenerator
 
             writeOut(replaced, className, outputPath);
 
-            EntityGenerate.entityGenerateMethods(files);
+            EntityGenerate.entityGenerateMethods(files, package);
         }
 
         public static string[] readIn(string fileName)

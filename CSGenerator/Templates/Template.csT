@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using #namespaceName#.Algebra.Class;
 
-namespace #namespaceName#
+namespace #namespaceName#.Final.Class
 {
 	public class #className# : #parentClassName#
 	{
